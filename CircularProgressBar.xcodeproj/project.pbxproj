@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C50106CA1BC79B84007F012C /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C50106C91BC79B84007F012C /* CustomIOSAlertView.m */; };
+		C50106D01BC7B9B6007F012C /* MyTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C50106CF1BC7B9B6007F012C /* MyTimePicker.m */; };
 		C5506B561BC635B20016881E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5506B551BC635B20016881E /* main.m */; };
 		C5506B591BC635B20016881E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5506B581BC635B20016881E /* AppDelegate.m */; };
 		C5506B5C1BC635B20016881E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5506B5B1BC635B20016881E /* ViewController.m */; };
@@ -37,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C50106C81BC79B84007F012C /* CustomIOSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOSAlertView.h; sourceTree = "<group>"; };
+		C50106C91BC79B84007F012C /* CustomIOSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOSAlertView.m; sourceTree = "<group>"; };
+		C50106CE1BC7B9B6007F012C /* MyTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTimePicker.h; sourceTree = "<group>"; };
+		C50106CF1BC7B9B6007F012C /* MyTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTimePicker.m; sourceTree = "<group>"; };
 		C5506B511BC635B20016881E /* CircularProgressBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircularProgressBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5506B551BC635B20016881E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C5506B571BC635B20016881E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -120,6 +126,10 @@
 				C5506B621BC635B20016881E /* LaunchScreen.storyboard */,
 				C5506B651BC635B20016881E /* Info.plist */,
 				C5506B541BC635B20016881E /* Supporting Files */,
+				C50106C81BC79B84007F012C /* CustomIOSAlertView.h */,
+				C50106C91BC79B84007F012C /* CustomIOSAlertView.m */,
+				C50106CE1BC7B9B6007F012C /* MyTimePicker.h */,
+				C50106CF1BC7B9B6007F012C /* MyTimePicker.m */,
 			);
 			path = CircularProgressBar;
 			sourceTree = "<group>";
@@ -287,7 +297,9 @@
 			files = (
 				C5506B5C1BC635B20016881E /* ViewController.m in Sources */,
 				C5506BAF1BC662E80016881E /* TimeHelper.m in Sources */,
+				C50106CA1BC79B84007F012C /* CustomIOSAlertView.m in Sources */,
 				C5506B591BC635B20016881E /* AppDelegate.m in Sources */,
+				C50106D01BC7B9B6007F012C /* MyTimePicker.m in Sources */,
 				C5506B561BC635B20016881E /* main.m in Sources */,
 				C5506BAC1BC6367D0016881E /* CircularProgressBar.m in Sources */,
 			);

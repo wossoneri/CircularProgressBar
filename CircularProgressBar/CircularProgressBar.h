@@ -7,6 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol CircularProgressDelegate
+
+- (void)CircularProgressEnd;
+
+@end
+
 
 @interface CircularProgressBar : UIView
 {
@@ -17,10 +23,19 @@
     UIFont *textFont;
     UIColor *textColor;
     NSMutableParagraphStyle *textStyle;
+    
+    NSTimer *m_timer;
+    bool b_timerRunning;
 }
 
+@property(nonatomic, assign) id<CircularProgressDelegate> delegate;
 @property(nonatomic)CGFloat time_left;
 
-- (void)setTotalTime:(CGFloat)time;
+- (void)setTotalSecondTime:(CGFloat)time;
+- (void)setTotalMinuteTime:(CGFloat)time;
+
+- (void)startTimer;
+- (void)stopTimer;
+- (void)pauseTimer;
 
 @end

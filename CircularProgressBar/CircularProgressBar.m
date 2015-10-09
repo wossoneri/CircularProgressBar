@@ -6,15 +6,18 @@
 //  Copyright © 2015 du. All rights reserved.
 //
 
-#define RADIUS 100
+#define RADIUS 200
 #define POINT_RADIUS 8
 #define CIRCLE_WIDTH 4
 #define PROGRESS_WIDTH 4
+#define TEXT_SIZE   140
 
 #import "CircularProgressBar.h"
 #import "TimeHelper.h"
 
 @implementation CircularProgressBar
+
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -34,11 +37,13 @@
     
     totalTime = 0;
     
-    textFont = [UIFont fontWithName: @"Helvetica Neue" size: 70];
+    textFont = [UIFont fontWithName: @"Helvetica Neue" size: TEXT_SIZE];
     textColor = [UIColor lightGrayColor];
     textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     textStyle.lineBreakMode = NSLineBreakByWordWrapping;
     textStyle.alignment = NSTextAlignmentCenter;
+    
+    b_timerRunning = NO;
 }
 
 - (void)initView {
@@ -47,8 +52,10 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-    
-    endAngle = (1 - self.time_left / totalTime) * 2 * M_PI + startAngle;
+    if (totalTime == 0) 
+        endAngle = startAngle;
+    else
+        endAngle = (1 - self.time_left / totalTime) * 2 * M_PI + startAngle;
     
 //    NSString *textContent = [NSString stringWithFormat:@"%2.2f", self.time_left];
     NSString *textContent = [TimeHelper formatTimeWithSecond:self.time_left];
@@ -113,14 +120,54 @@
     dot.lineWidth = 1;
 //    [[UIColor redColor] setFill];
     [dot fill];
-
-    
     
 }
 
-- (void)setTotalTime:(CGFloat)time {
+- (void)setTotalSecondTime:(CGFloat)time {
     totalTime = time;
     self.time_left = totalTime;
 }
 
+- (void)setTotalMinuteTime:(CGFloat)time {
+    totalTime = time * 60;
+    self.time_left = totalTime;
+}
+
+- (void)startTimer {
+    if (!b_timerRunning) {
+        m_timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(setProgress) userInfo:nil repeats:YES];
+        b_timerRunning = YES;
+    }
+}
+
+- (void)pauseTimer {
+    if (b_timerRunning) {
+        [m_timer invalidate];
+        m_timer = nil;
+        b_timerRunning = NO;
+    }
+}
+
+- (void)setProgress {
+    if (self.time_left > 0) {
+        self.time_left -= 0.05;
+        [self setNeedsDisplay];
+    } else {
+        [self pauseTimer];
+        
+        if (delegate) {
+            [delegate CircularProgressEnd];
+        }
+    }
+}
+
+- (void)stopTimer {
+    [self pauseTimer];
+    
+    startAngle = -0.5 * M_PI;
+    endAngle = startAngle;
+    self.time_left = totalTime;
+    [self setNeedsDisplay];
+
+}
 @end
