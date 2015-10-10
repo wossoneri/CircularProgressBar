@@ -1,11 +1,15 @@
 # CircularProgressBar
 My test crcular progress bar
 
-![img](https://github.com/wossoneri/CircularProgressBar/blob/master/ExampleImage/Screen%20Shot%202015-10-09%20at%205.46.50%20PM.png?raw=true)
+圆形进度条和计时器
 
-![img](https://github.com/wossoneri/CircularProgressBar/blob/master/ExampleImage/Screen%20Shot%202015-10-09%20at%205.46.58%20PM.png?raw=true)
+System timer:
+![](https://github.com/wossoneri/CircularProgressBar/blob/master/ExampleImage/Screen%20Shot%202015-10-10%20at%2011.11.02%20AM.png?raw=true)
 
-single tap the view to choose time
+and my timer:
+![](https://github.com/wossoneri/CircularProgressBar/blob/master/ExampleImage/Screen%20Shot%202015-10-10%20at%2011.10.22%20AM.png?raw=true)
+chose time:
+![](https://github.com/wossoneri/CircularProgressBar/blob/master/ExampleImage/Screen%20Shot%202015-10-10%20at%2011.10.35%20AM.png?raw=true)
 
-
-程序不完善，有一些逻辑bug
+单击选择时间，确定则开始倒计时。
+UIPickerView 支持内容循环显示，单位“分钟”固定显示
