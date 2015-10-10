@@ -10,7 +10,8 @@
 #define POINT_RADIUS 8
 #define CIRCLE_WIDTH 4
 #define PROGRESS_WIDTH 4
-#define TEXT_SIZE   140
+#define TEXT_SIZE 140
+#define TIMER_INTERVAL 0.05
 
 #import "CircularProgressBar.h"
 #import "TimeHelper.h"
@@ -38,17 +39,20 @@
     totalTime = 0;
     
     textFont = [UIFont fontWithName: @"Helvetica Neue" size: TEXT_SIZE];
-    textColor = [UIColor lightGrayColor];
+    textColor = [UIColor blackColor];
     textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     textStyle.lineBreakMode = NSLineBreakByWordWrapping;
     textStyle.alignment = NSTextAlignmentCenter;
     
     b_timerRunning = NO;
+
 }
 
 - (void)initView {
-    self.backgroundColor = [UIColor darkGrayColor];
-    
+    self.backgroundColor = [UIColor colorWithRed:0xeb / 255.0f
+                                           green:0xeb / 255.0f
+                                            blue:0xf1 / 255.0f
+                                           alpha:1.0f];
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -57,9 +61,6 @@
     else
         endAngle = (1 - self.time_left / totalTime) * 2 * M_PI + startAngle;
     
-//    NSString *textContent = [NSString stringWithFormat:@"%2.2f", self.time_left];
-    NSString *textContent = [TimeHelper formatTimeWithSecond:self.time_left];
-    
     UIBezierPath *circle = [UIBezierPath bezierPath];
     [circle addArcWithCenter:CGPointMake(rect.size.width / 2, rect.size.height / 2)
                           radius:RADIUS
@@ -67,7 +68,7 @@
                         endAngle:2 * M_PI
                        clockwise:YES];
     circle.lineWidth = CIRCLE_WIDTH;
-    [[UIColor lightGrayColor] setStroke];
+    [[UIColor whiteColor] setStroke];
     [circle stroke];
 
     
@@ -78,7 +79,6 @@
                         endAngle:endAngle
                        clockwise:YES];
     progress.lineWidth = PROGRESS_WIDTH;
-//    [[UIColor redColor] setStroke];
     [[UIColor redColor] set];
     [progress stroke];
     
@@ -87,6 +87,8 @@
     
 //    [[UIColor blackColor] setFill];
     
+    //    NSString *textContent = [NSString stringWithFormat:@"%2.2f", self.time_left];
+    NSString *textContent = [TimeHelper formatTimeWithSecond:self.time_left];
     
     CGSize textSize = [textContent sizeWithAttributes:@{NSFontAttributeName:textFont}];
     
@@ -118,7 +120,6 @@
                       endAngle:2 * M_PI
                      clockwise:YES];
     dot.lineWidth = 1;
-//    [[UIColor redColor] setFill];
     [dot fill];
     
 }
@@ -135,7 +136,7 @@
 
 - (void)startTimer {
     if (!b_timerRunning) {
-        m_timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(setProgress) userInfo:nil repeats:YES];
+        m_timer = [NSTimer scheduledTimerWithTimeInterval:TIMER_INTERVAL target:self selector:@selector(setProgress) userInfo:nil repeats:YES];
         b_timerRunning = YES;
     }
 }
@@ -150,7 +151,7 @@
 
 - (void)setProgress {
     if (self.time_left > 0) {
-        self.time_left -= 0.05;
+        self.time_left -= TIMER_INTERVAL;
         [self setNeedsDisplay];
     } else {
         [self pauseTimer];

@@ -19,6 +19,8 @@
     UIPickerView *m_pickerView;
     NSMutableArray *m_arrayData;
     
+    UILabel *m_label;
+    
     int m_selectedNum;
 }
 

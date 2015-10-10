@@ -32,18 +32,25 @@
     }
     
     
-    
-    UIPickerView *aPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake((self.frame.size.width - 320) / 2.0,
-                                                                               (self.frame.size.height - 216) / 2.0,
-                                                                               320.0, 216.0)];
-    m_pickerView = aPickerView;
+    m_pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake((self.frame.size.width - 320) / 2.0,
+                                                                  (self.frame.size.height - 216) / 2.0,
+                                                                  320.0, 216.0)];
     m_pickerView.delegate = self;
     m_pickerView.dataSource = self;
     m_pickerView.showsSelectionIndicator = YES;
     
     NSInteger  selectedRow = 0;
     [m_pickerView selectRow:(((NSInteger)((MAX_ROWS / 2) / [m_arrayData count])) * [m_arrayData count]) + (selectedRow % [m_arrayData count]) inComponent:0 animated:NO];
+    
+    
+    m_label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width / 2.0 + 20,
+                                                        self.frame.size.height/ 2.0 - 20,
+                                                        60, 40)];
+    m_label.text = @"分钟";
+    m_label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16];
+    
     [self addSubview:m_pickerView];
+    [self addSubview:m_label];
 }
 
 - (void)initView {
@@ -51,6 +58,8 @@
                                            green:0xeb / 255.0f
                                             blue:0xf1 / 255.0f
                                            alpha:1.0f];
+    
+    
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -75,7 +84,11 @@
 //返回滚轮的数量
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 2;
+    //原来为了显示 “分钟” 使用2列滑轮的方法，在第二列显示 “分钟”，
+    //但其有拖动效果，和系统的不一样。
+    //所以为了解决这个问题，采用放一个label的方法固定显示，label的坐标需要调整好
+//    return 2;
+    return 1;
 }
 
 //返回滚轮中row的样式

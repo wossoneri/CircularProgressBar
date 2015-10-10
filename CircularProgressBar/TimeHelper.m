@@ -14,7 +14,7 @@
 //    left_time % 60
     
     NSString *str_sec;
-    int sec = (int)left_time % 60;
+    int sec = (int)ceil(left_time) % 60; //ceil 向上取整
     if (sec < 10) {
         str_sec = [@"0" stringByAppendingString:[NSString stringWithFormat:@"%d", sec]];
     } else {
@@ -22,7 +22,7 @@
     }
     
     NSString *str_min;
-    int min = (int)left_time / 60;
+    int min = (int)ceil(left_time) / 60;
     if (min < 10) {
         str_min = [@"0" stringByAppendingString:[NSString stringWithFormat:@"%d", min]];
     } else {

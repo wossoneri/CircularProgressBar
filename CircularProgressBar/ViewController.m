@@ -67,6 +67,7 @@
 #pragma mark - progress bar delegate
 - (void)CircularProgressEnd {
     [m_circularProgressBar stopTimer];
+    m_timeSelected = 0;
 }
 
 #pragma mark - picker delegate
