@@ -40,7 +40,7 @@
     m_pickerView.showsSelectionIndicator = YES;
     
     NSInteger  selectedRow = 0;
-    [m_pickerView selectRow:(((NSInteger)((MAX_ROWS / 2) / [m_arrayData count])) * [m_arrayData count]) + (selectedRow % [m_arrayData count]) inComponent:0 animated:NO];
+    [m_pickerView selectRow:(((NSInteger)((MAX_ROWS / 2) / [m_arrayData count])) * [m_arrayData count]) + (selectedRow % [m_arrayData count]) inComponent:0 animated:NO]; //计算就是取MAX_ROWS的中间位置 并取整 如果默认不是起始的0 则加上偏移位置
     
     
     m_label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width / 2.0 + 20,
@@ -81,6 +81,19 @@
     return nil;
 }
 
+//返回滚轮中row的样式
+-(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return nil;
+}
+
+//返回滚轮的row的高度
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 30;
+}
+
+#pragma mark - picker dataSource
 //返回滚轮的数量
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -91,11 +104,6 @@
     return 1;
 }
 
-//返回滚轮中row的样式
--(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return nil;
-}
 
 //当row被选中的时候
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -117,11 +125,7 @@
     }
 }
 
-//返回滚轮的row的高度
--(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 30;
-}
+
 
 //返回row显示的标题
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component

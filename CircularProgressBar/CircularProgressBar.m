@@ -39,7 +39,7 @@
     totalTime = 0;
     
     textFont = [UIFont fontWithName: @"Helvetica Neue" size: TEXT_SIZE];
-    textColor = [UIColor blackColor];
+    textColor = [UIColor lightGrayColor];
     textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
     textStyle.lineBreakMode = NSLineBreakByWordWrapping;
     textStyle.alignment = NSTextAlignmentCenter;
@@ -49,10 +49,8 @@
 }
 
 - (void)initView {
-    self.backgroundColor = [UIColor colorWithRed:0xeb / 255.0f
-                                           green:0xeb / 255.0f
-                                            blue:0xf1 / 255.0f
-                                           alpha:1.0f];
+    self.backgroundColor = [UIColor darkGrayColor];
+    
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -68,7 +66,7 @@
                         endAngle:2 * M_PI
                        clockwise:YES];
     circle.lineWidth = CIRCLE_WIDTH;
-    [[UIColor whiteColor] setStroke];
+    [[UIColor lightGrayColor] setStroke];
     [circle stroke];
 
     
@@ -79,6 +77,7 @@
                         endAngle:endAngle
                        clockwise:YES];
     progress.lineWidth = PROGRESS_WIDTH;
+//    [[UIColor redColor] setStroke];
     [[UIColor redColor] set];
     [progress stroke];
     
@@ -120,6 +119,7 @@
                       endAngle:2 * M_PI
                      clockwise:YES];
     dot.lineWidth = 1;
+//    [[UIColor redColor] setFill];
     [dot fill];
     
 }
